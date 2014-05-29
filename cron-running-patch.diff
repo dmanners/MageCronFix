@@ -1,0 +1,24 @@
+From 84bd21370574b41aed70316558562f951b1ce6ba Mon Sep 17 00:00:00 2001
+From: David Manners <dmanners87@gmail.com>
+Date: Thu, 29 May 2014 09:37:20 +0200
+Subject: [PATCH] Add fix so that cron job is set to running
+
+---
+ app/code/core/Mage/Cron/Model/Observer.php | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/app/code/core/Mage/Cron/Model/Observer.php b/app/code/core/Mage/Cron/Model/Observer.php
+index f399aba..1e6b8f8 100644
+--- a/app/code/core/Mage/Cron/Model/Observer.php
++++ b/app/code/core/Mage/Cron/Model/Observer.php
+@@ -316,6 +316,7 @@ class Mage_Cron_Model_Observer
+                 though running status is set in tryLockJob we must set it here because the object
+                 was loaded with a pending status and will set it back to pending if we don't set it here
+                  */
++                $schedule->setStatus(Mage_Cron_Model_Schedule::STATUS_RUNNING);
+             }
+ 
+             $schedule
+-- 
+1.7.11.msysgit.1
+
